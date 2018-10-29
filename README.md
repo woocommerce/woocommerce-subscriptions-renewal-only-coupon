@@ -9,7 +9,7 @@ To define the coupon codes that should be renewal only, set the `WCS_RENEWAL_ONL
 Example `WCS_RENEWAL_ONLY_COUPON_CODES` usage:
 
 ```php
-define( WCS_RENEWAL_ONLY_COUPON_CODES, array( 'coupon_code_one', 'hallowoon', 'cyber_monday' )  );
+define( 'WCS_RENEWAL_ONLY_COUPON_CODES', array( 'coupon_code_one', 'hallowoon', 'cyber_monday' )  );
 ```
 
 ## Installation
