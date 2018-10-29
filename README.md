@@ -4,6 +4,8 @@ Make some coupons apply only to renewal payments, not initial sign-ups.
 
 To define the coupon codes that should be renewal only, set the `WCS_RENEWAL_ONLY_COUPON_CODES` constant.
 
+Store managers can still apply Renewal Only coupons to any order or subscription. Customers can only apply them to renewal order payments.
+
 ## Usage
 
 Example `WCS_RENEWAL_ONLY_COUPON_CODES` usage:

@@ -84,14 +84,15 @@ function wcs_roc_coupon_error_message( $error_message, $error_code, $coupon ) {
 
 
 /**
- * If we have a coupon that is a renewal only coupon code and there is not a renewal in the cart, we have invalid usage. Otherwise, we don't.
+ * If we're not on the front end, we have a coupon that is a renewal only coupon code
+ * and there is not a renewal in the cart, we have invalid usage. Otherwise, we don't.
  *
  * @param string $coupon_code A coupon code.
  * @return boolean Whether the coupon code is a renewal only code or not.
  */
 function wcs_roc_is_invalid_renewal_only_coupon_usage( $coupon_code ) {
 
-	if ( wcs_roc_is_renewal_only_coupon_code( $coupon_code ) && ! wcs_cart_contains_renewal() ) {
+	if ( ! is_admin() && wcs_roc_is_renewal_only_coupon_code( $coupon_code ) && ! wcs_cart_contains_renewal() ) {
 		return true;
 	}
 
