@@ -1,6 +1,6 @@
 # WooCommerce Subscriptions - Renewal Only Coupon
 
-Only allow some coupons to be applied to renewal payments, not initial sign-ups, by customers via the cart.
+Only allow some coupons to be applied only to renewal payments, not initial sign-ups, by customers via the cart.
 
 To define the coupon codes that should be renewal only, set the `WCS_RENEWAL_ONLY_COUPON_CODES` constant. The value fo the constant should be an array of coupon codes.
 
