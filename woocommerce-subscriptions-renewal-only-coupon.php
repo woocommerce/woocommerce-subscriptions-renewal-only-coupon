@@ -45,72 +45,12 @@ if ( false === PP_Dependencies::is_subscriptions_active( '2.4' ) ) {
 	return;
 }
 
-/**
- * Only mark coupons defined as Renewal Only as valid if the cart contains a renewal (regardless of anything else).
- *
- * @param boolean $is_valid
- * @param WC_Coupon $coupon
- * @param WC_Discounts $discount Added in WC 3.2 the WC_Discounts object contains information about the coupon being applied to either carts or orders - Optional
- * @return boolean Whether the coupon is valid or not
- */
-function wcs_roc_coupon_is_valid( $is_valid, $coupon, $discount = null ) {
-
-	if ( $is_valid && wcs_roc_is_invalid_renewal_only_coupon_usage( $coupon->get_code() ) ) {
-		$is_valid = false;
-		add_filter( 'woocommerce_coupon_error', 'wcs_roc_coupon_error_message', 10, 3 );
-	}
-
-	return $is_valid;
-}
-add_filter( 'woocommerce_coupon_is_valid', 'wcs_roc_coupon_is_valid', 1000 );
-
+require_once( 'includes/class-wcs-renewal-only-coupon.php' );
 
 /**
- * Filter the coupon error message for Renewal Only coupon errors.
- *
- * @param string    $error_message Error message.
- * @param int       $error_code    Error code.
- * @param WC_Coupon $coupon        Coupon data.
- * @return string Error message.
+ * Bootstrap the Renewal Only coupon class.
  */
-function wcs_roc_coupon_error_message( $error_message, $error_code, $coupon ) {
-
-	if ( wcs_roc_is_invalid_renewal_only_coupon_usage( $coupon->get_code() ) ) {
-		$error_message = __( 'Sorry, this coupon can only be applied to renewal payments.', 'woocommerce-subscriptions-renewal-only-coupon' );
-	}
-
-	return $error_message;
+function wcs_renewal_only_coupon() {
+	return WCS_Renewal_Only_Coupon::instance();
 }
-
-
-/**
- * If we're not on the front end, we have a coupon that is a renewal only coupon code
- * and there is not a renewal in the cart, we have invalid usage. Otherwise, we don't.
- *
- * @param string $coupon_code A coupon code.
- * @return boolean Whether the coupon code is a renewal only code or not.
- */
-function wcs_roc_is_invalid_renewal_only_coupon_usage( $coupon_code ) {
-
-	if ( ! is_admin() && wcs_roc_is_renewal_only_coupon_code( $coupon_code ) && ! wcs_cart_contains_renewal() ) {
-		return true;
-	}
-
-	return false;
-}
-
-
-/**
- * Check if a given coupon code is defined as a renewal only coupon code.
- *
- * @param string $coupon_code A coupon code.
- * @return boolean Whether the coupon code is a renewal only code or not.
- */
-function wcs_roc_is_renewal_only_coupon_code( $coupon_code ) {
-
-	if ( defined( 'WCS_RENEWAL_ONLY_COUPON_CODES' ) && in_array( $coupon_code, WCS_RENEWAL_ONLY_COUPON_CODES ) ) {
-		return true;
-	}
-
-	return false;
-}
+add_action( 'plugins_loaded', 'wcs_renewal_only_coupon' );
