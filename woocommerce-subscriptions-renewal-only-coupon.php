@@ -46,6 +46,7 @@ if ( false === PP_Dependencies::is_subscriptions_active( '2.4' ) ) {
 }
 
 require_once( 'includes/class-wcs-renewal-only-coupon.php' );
+require_once( 'includes/class-wcs-renewal-only-coupon-settings.php' );
 
 /**
  * Bootstrap the Renewal Only coupon class.

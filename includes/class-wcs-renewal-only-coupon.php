@@ -16,6 +16,9 @@ class WCS_Renewal_Only_Coupon {
 	/** @var WCS_Renewal_Only_Coupon */
 	private static $instance = null;
 
+	/** @var WCS_Renewal_Only_Coupon_Settings */
+	private static $settings = null;
+
 	/**
 	 * Get the active renewal only coupon instance.
 	 *
@@ -31,6 +34,10 @@ class WCS_Renewal_Only_Coupon {
 			$class = apply_filters( 'wcs_renewal_only_coupon_class', 'WCS_Renewal_Only_Coupon' );
 			self::$instance = new $class();
 			self::$instance->init();
+
+			$settings_class = apply_filters( 'wcs_renewal_only_coupon_settings_class', 'WCS_Renewal_Only_Coupon_Settings' );
+			self::$settings = new $settings_class();
+			self::$settings->init();
 		}
 
 		return self::$instance;
@@ -102,10 +109,32 @@ class WCS_Renewal_Only_Coupon {
 	 */
 	protected function is_renewal_only_coupon_code( $coupon_code ) {
 
-		if ( defined( 'WCS_RENEWAL_ONLY_COUPON_CODES' ) && in_array( $coupon_code, WCS_RENEWAL_ONLY_COUPON_CODES ) ) {
+		if ( in_array( $coupon_code, $this->get_coupon_codes() ) ) {
 			return true;
 		}
 
 		return false;
+	}
+
+
+	/**
+	 * Get coupon codes which should be treated as renewal only.
+	 *
+	 * Coupon codes can be defined in:
+	 * - a constant
+	 * - a filter
+	 * - an admin setting
+	 *
+	 * @return array[string] Set of coupon codes which should be renewal only.
+	 */
+	public function get_coupon_codes() {
+
+		$coupon_codes = self::$settings->get_coupon_codes();
+
+		if ( defined( 'WCS_RENEWAL_ONLY_COUPON_CODES' ) ) {
+			$coupon_codes = array_merge( $coupon_codes, WCS_RENEWAL_ONLY_COUPON_CODES );
+		}
+
+		return $coupon_codes;
 	}
 }

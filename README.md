@@ -8,7 +8,17 @@ Store managers can still apply Renewal Only coupons to any order or subscription
 
 ## Usage
 
-Example `WCS_RENEWAL_ONLY_COUPON_CODES` usage:
+### Option 1: Enter Coupon Codes via Subscriptions Settings
+
+1. Go to **WooCommerce > Settings > Subscriptions**
+1. Scroll to the **Renewals** section
+1. Click the **Renewal Only Coupons** text field
+1. Enter a coupon code to restrict to renewal payments only
+1. If additional coupon codes are requireed, enter a comma (`, `) before each additional code
+
+![](http://pic.pros.pr/0f138b7a4d9d/Screen%20Shot%202018-10-30%20at%2010.54.38.png)
+
+### Option 2: Define Coupon Codes in Class Constant
 
 ```php
 define( 'WCS_RENEWAL_ONLY_COUPON_CODES', array( 'coupon_code_one', 'hallowoon', 'cyber_monday' )  );
