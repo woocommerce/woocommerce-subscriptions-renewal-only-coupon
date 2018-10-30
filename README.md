@@ -24,6 +24,19 @@ Store managers can still apply Renewal Only coupons to any order or subscription
 define( 'WCS_RENEWAL_ONLY_COUPON_CODES', array( 'coupon_code_one', 'hallowoon', 'cyber_monday' )  );
 ```
 
+### Option 3: Define Coupon Codes via Filter
+
+```php
+function eg_my_renewal_only_coupon_codes( $existing_codes ) {
+
+	$existing_codes[] = 'my_new_code';
+	$existing_codes[] = 'my_other_new_code';
+
+	return $existing_codes;
+}
+add_filter( 'wcs_renewal_only_coupon_codes', 'eg_my_renewal_only_coupon_codes' );
+```
+
 ## Installation
 
 To install:

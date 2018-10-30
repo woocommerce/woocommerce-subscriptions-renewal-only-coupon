@@ -135,6 +135,6 @@ class WCS_Renewal_Only_Coupon {
 			$coupon_codes = array_merge( $coupon_codes, WCS_RENEWAL_ONLY_COUPON_CODES );
 		}
 
-		return $coupon_codes;
+		return apply_filters( 'wcs_renewal_only_coupon_codes', $coupon_codes );
 	}
 }
