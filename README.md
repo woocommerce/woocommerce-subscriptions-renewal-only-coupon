@@ -1,6 +1,10 @@
 # WooCommerce Subscriptions - Renewal Only Coupon
 
-Only allow some coupons to be applied only to renewal payments, not initial sign-ups, by customers via the cart.
+Need to offer customers a discount that can only be applied to a [manual renewal](https://docs.woocommerce.com/document/subscriptions/renewal-process/#section-4)?
+
+Now you can!
+
+Renewal Only Coupons makes it possible to create WooCommerce Product or Cart coupons that can only be applied to renewal payments, not initial sign-ups, by customers via the cart.
 
 To define the coupon codes that should be renewal only, either:
 
@@ -14,6 +18,24 @@ Example error when attempting to apply a _Renewal Only_ coupon to a new sign-up:
 ![](http://pic.pros.pr/ea993559e98b/Screen%20Shot%202018-10-30%20at%2011.15.42.png)
 
 ## Usage
+
+### Step 0: Create a Coupon
+
+To create a coupon:
+
+1. Go to **WooCommerce > Coupons > Add Coupon**
+1. Click **Discount Type**
+1. Click either:
+	1. _Recurring Product Discount_ or
+	1._Recurring Product % Discount_
+1. Complete other coupon fields
+
+**Note:** For best results, we recommend using either a _Recurring Product Discount_ or _Recurring Product % Discount_ discount type.
+
+These discount types can be applied to subscriptions via the **WooCommerce > Edit Subscription** administration screen, while others, like _Fixed cart_ or _Fixed product_ discount types can not be applied to subscriptions.
+
+Other discount types may also yield unexpected behaviour, for example, the _Sign Up Fee_ discount type will not discount any part of a renewal payment, because it only discounts the sign-up fee component of an order, of which there is none on a renewal.
+
 
 ### Option 1: Enter Coupon Codes via Subscriptions Settings
 

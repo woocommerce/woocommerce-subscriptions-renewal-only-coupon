@@ -48,7 +48,8 @@ class WCS_Renewal_Only_Coupon {
 	}
 
 	/**
-	 * Only mark coupons defined as Renewal Only as valid if the cart contains a renewal (regardless of anything else).
+	 * Mark coupons defined as Renewal Only as valid if the cart contains a renewal and invalid if
+	 * it does not  (regardless of anything else).
 	 *
 	 * @param boolean $is_valid
 	 * @param WC_Coupon $coupon
@@ -60,6 +61,9 @@ class WCS_Renewal_Only_Coupon {
 		if ( $is_valid && $this->is_invalid_coupon_usage( $coupon->get_code() ) ) {
 			$is_valid = false;
 			add_filter( 'woocommerce_coupon_error', [ $this, 'coupon_error_message' ], 10, 3 );
+		} elseif ( ! $is_valid && $this->is_renewal_only_coupon_code( $coupon->get_code() ) && wcs_cart_contains_renewal() ) {
+			$is_valid = true;
+			remove_filter( 'woocommerce_coupon_error', 'WC_Subscriptions_Coupon::add_coupon_error' );
 		}
 
 		return $is_valid;
