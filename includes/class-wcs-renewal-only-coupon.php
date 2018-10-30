@@ -44,7 +44,7 @@ class WCS_Renewal_Only_Coupon {
 	}
 
 	protected function init() {
-		add_filter( 'woocommerce_coupon_is_valid', [ $this, 'coupon_is_valid' ], 1000 );
+		add_filter( 'woocommerce_coupon_is_valid', [ $this, 'coupon_is_valid' ], 1000, 3 );
 	}
 
 	/**
