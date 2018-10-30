@@ -77,7 +77,7 @@ class WCS_Renewal_Only_Coupon {
 	public function coupon_error_message( $error_message, $error_code, $coupon ) {
 
 		if ( $this->is_invalid_coupon_usage( $coupon->get_code() ) ) {
-			$error_message = __( 'Sorry, this coupon can only be applied to renewal payments.', 'woocommerce-subscriptions-renewal-only-coupon' );
+			$error_message = sprintf( __( 'Sorry, coupon "%s" can only be applied to renewal payments.', 'woocommerce-subscriptions-renewal-only-coupon' ), $coupon->get_code() );
 		}
 
 		return $error_message;

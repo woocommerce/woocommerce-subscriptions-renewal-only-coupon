@@ -6,7 +6,7 @@ To define the coupon codes that should be renewal only, set the `WCS_RENEWAL_ONL
 
 Store managers can still apply Renewal Only coupons to any order or subscription. Customers can only apply them to renewal order payments.
 
-![](http://pic.pros.pr/22f449fee7ed/Screen%20Shot%202018-10-30%20at%2011.11.16.png)
+![](http://pic.pros.pr/ea993559e98b/Screen%20Shot%202018-10-30%20at%2011.15.42.png)
 
 ## Usage
 
