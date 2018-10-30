@@ -59,6 +59,7 @@ class WCS_Renewal_Only_Coupon_Settings {
 
 		try {
 			$coupon_codes = explode( ',', $coupon_codes );
+			$coupon_codes = array_map( 'trim', $coupon_codes );
 		} catch ( Exception $e ) {
 			add_filter( 'admin_notices', [ $this, 'invalid_codes_notice' ], 10, 3 );
 			$coupon_codes = array();
