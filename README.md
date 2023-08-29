@@ -1,3 +1,5 @@
+> IMPORTANT: This code is made available in the hope that it will be useful, but **without any warranty**. See the GNU General Public License included with the code for more details. Automattic or WooCommerce support services are also not available to assist with the use of this code.
+
 # WooCommerce Subscriptions - Renewal Only Coupon
 
 Need to offer customers a discount that can only be applied to a [manual renewal](https://docs.woocommerce.com/document/subscriptions/renewal-process/#section-4)?
